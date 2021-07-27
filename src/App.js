@@ -1,30 +1,52 @@
-import { Counter, Component } from './components/Component/Component';
+import PropTypes from "prop-types";
+import { Button } from "@material-ui/core";
 
-import './App.css';
+import "./App.css";
+import { useRef, useEffect, useState, useCallback } from "react";
+import { Message } from "./components/Message";
+import { MessageList } from "./components/MessageList";
+import { Form } from "./components/Form";
+import { AUTHORS } from "./constants";
 
-function App({ name }) {
+function App() {
+  const [messages, setMessages] = useState([
+    { text: "Dummy", author: AUTHORS.human, id: 1 },
+  ]);
+
+  const handleSendMessage = useCallback(
+    (newMessage) => {
+      setMessages([...messages, newMessage]);
+    },
+    [messages]
+  );
+
+  useEffect(() => {
+    if (
+      !messages.length ||
+      messages[messages.length - 1].author === AUTHORS.robot
+    ) {
+      return;
+    }
+
+    const timeout = setTimeout(() => {
+      const newMessage = {
+        text: "I am a robot",
+        author: AUTHORS.robot,
+        id: Date.now(),
+      };
+
+      setMessages([...messages, newMessage]);
+    }, 1000);
+
+    return () => clearTimeout(timeout);
+  }, [messages]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>Hello React</p>
-        <Component />
-      </header>
+    <div>
+      <MessageList messages={messages} />
+      <Form onSendMessage={handleSendMessage} />
     </div>
   );
 }
 
 export default App;
-
-const arr = [1, 2];
-
-// const one = arr[0];
-// const two = arr[1];
-
-
-const obj = {
-  a: 3
-};
-
-const { a } = obj;
-
-const [one, two, three] = arr;
