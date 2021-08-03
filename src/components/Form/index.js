@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { AUTHORS } from '../../constants';
 
 export const Form = ({ onSendMessage }) => {
@@ -19,6 +19,10 @@ export const Form = ({ onSendMessage }) => {
     });
     setValue('');
   }
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
 
   return (
     <form onSubmit={handleSubmit}>

@@ -49,8 +49,8 @@ function Home() {
     if (
       !chatId ||
       !chats[chatId]?.messages.length ||
-        chats[chatId].messages[chats[chatId].messages.length - 1].author ===
-          AUTHORS.robot
+      chats[chatId].messages[chats[chatId].messages.length - 1].author ===
+        AUTHORS.robot
     ) {
       return;
     }
