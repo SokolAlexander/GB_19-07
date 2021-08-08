@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { BrowserRouter, Link, Switch, Route } from "react-router-dom";
-import { Profile } from "../Profile";
+import Profile from "../Profile";
 import Home from "../Home";
 import { ThemeContext } from "../../utils/ThemeContext";
 
@@ -24,7 +24,7 @@ export const Router = () => {
         <Switch>
           <Route
             path="/profile"
-            render={(data) => <Profile match={data.match} />}
+            render={(data) => <Profile match={data.match} history={data.history} />}
           ></Route>
           <Route path="/home/:chatId?">
             <Home />
