@@ -3,10 +3,10 @@ import { useDispatch } from "react-redux";
 import { addChat } from "../../store/chats/actions";
 import { useInput } from "../../utils/useInput";
 
-export const AddChat = () => {
+export const AddChat = ({ onAddChat }) => {
   const dispatch = useDispatch();
 
-  const { value, handleChange, reset } = useInput('');
+  const { value, handleChange, reset } = useInput("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -16,7 +16,7 @@ export const AddChat = () => {
     }
 
     const newId = `chat-${Date.now()}`;
-    dispatch(addChat(newId, value));
+    onAddChat(newId, value);
     reset();
   };
 
