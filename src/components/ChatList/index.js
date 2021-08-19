@@ -1,12 +1,10 @@
 import React, { useContext } from "react";
 import { List, ListItem } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import { ThemeContext } from "../../utils/ThemeContext";
-import { withThemeContext } from "../Message";
 import { AddChat } from "./AddChat";
 import { ChatItem } from "./ChatItem";
 
-export const ChatList = ({ chats, theme, onDeleteChat, onAddChat }) => {
+export const ChatList = ({ chats, onDeleteChat, onAddChat }) => {
   return (
     <>
       <List>

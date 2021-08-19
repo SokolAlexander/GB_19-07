@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
-import { addChat } from "../../store/chats/actions";
+import { addChatWithFB } from "../../store/chats/actions";
 import { useInput } from "../../utils/useInput";
 
 export const AddChat = ({ onAddChat }) => {
@@ -15,8 +15,7 @@ export const AddChat = ({ onAddChat }) => {
       return;
     }
 
-    const newId = `chat-${Date.now()}`;
-    onAddChat(newId, value);
+    dispatch(addChatWithFB(value));
     reset();
   };
 
